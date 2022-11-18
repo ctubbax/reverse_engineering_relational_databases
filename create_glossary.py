@@ -45,8 +45,9 @@ for table in Tables:
 glossary = pd.DataFrame([])
 glossary['Table'] = Tables
 glossary['Primary keys'] = Primary_keys
-glossary['Normal datafiels'] = Normal_datafields
 glossary['Foreign keys'] = Foreign_keys
+
+glossary['Normal datafields'] = Normal_datafields
 
 print(glossary)
 
