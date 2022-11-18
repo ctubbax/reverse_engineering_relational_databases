@@ -1,0 +1,586 @@
+"dbms","table_catalog","table_schema","table_name","column_name","ordinal_position","data_type","character_maximum_length","constraint_type","table_schema-2","table_name-2","column_name-2"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_event_type","shipment_event_type_code",1,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","unit_of_measure","unit_of_measure_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","hs_code","hs_code",1,"character varying",10,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","value_added_service","value_added_service_code",1,"character varying",5,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","reference_type","reference_type_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","receipt_delivery_type","receipt_delivery_type_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_movement_type","cargo_movement_type_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","country","country_code",1,"character varying",2,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","un_location","un_location_code",1,"character",5,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","un_location","country_code",4,"character",2,"FOREIGN KEY","dcsa_im_v3_0","country","country_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","address","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","location","id",1,"character varying",100,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","location","un_location_code",5,"character",5,"FOREIGN KEY","dcsa_im_v3_0","un_location","un_location_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","location","address_id",6,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","address","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","facility_type","facility_type_code",1,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","facility","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","facility","un_location_code",3,"character varying",5,"FOREIGN KEY","dcsa_im_v3_0","un_location","un_location_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","facility","location_id",6,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","location","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","location","facility_id",7,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","facility","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","carrier","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party","id",1,"character varying",100,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party","address_id",6,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","address","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party_contact_details","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party_contact_details","party_id",2,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","party","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","code_list_responsible_agency","dcsa_responsible_agency_code",1,"character varying",5,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party_identifying_code","dcsa_responsible_agency_code",1,"character varying",5,"FOREIGN KEY","dcsa_im_v3_0","code_list_responsible_agency","dcsa_responsible_agency_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party_identifying_code","party_id",2,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","party","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","payment_term_type","payment_term_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","incoterms","incoterms_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document_type","transport_document_type_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cut_off_time","cut_off_time_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_type","code",1,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel","vessel_imo_number",2,"character varying",7,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel","vessel_operator_carrier_id",6,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","carrier","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel","type",10,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","vessel_type","code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel","dimension_unit",11,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","unit_of_measure","unit_of_measure_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","communication_channel_qualifier","communication_channel_qualifier_code",1,"character varying",2,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_sharing_agreement_type","vessel_sharing_agreement_type_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_sharing_agreement","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_sharing_agreement","vessel_sharing_agreement_type_code",3,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","vessel_sharing_agreement_type","vessel_sharing_agreement_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","tradelane","id",1,"character varying",8,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","tradelane","vessel_sharing_agreement_id",3,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","vessel_sharing_agreement","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","service","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","service","carrier_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","carrier","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","service","tradelane_id",5,"character varying",8,"FOREIGN KEY","dcsa_im_v3_0","tradelane","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","voyage","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","voyage","service_id",4,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","service","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","mode_of_transport","mode_of_transport_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","mode_of_transport","dcsa_transport_type",4,"character varying",50,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","document_status",3,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","shipment_event_type","shipment_event_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","receipt_type_at_origin",4,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","receipt_delivery_type","receipt_delivery_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","delivery_type_at_destination",5,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","receipt_delivery_type","receipt_delivery_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","cargo_movement_type_at_origin",6,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","cargo_movement_type","cargo_movement_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","cargo_movement_type_at_destination",7,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","cargo_movement_type","cargo_movement_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","payment_term_code",10,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","payment_term_type","payment_term_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","incoterms",20,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","incoterms","incoterms_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","invoice_payable_at",21,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","location","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","transport_document_type_code",25,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","transport_document_type","transport_document_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","communication_channel_code",28,"character varying",2,"FOREIGN KEY","dcsa_im_v3_0","communication_channel_qualifier","communication_channel_qualifier_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","vessel_id",30,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","vessel","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","place_of_issue",34,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","location","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","pre_carriage_mode_of_transport_code",35,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","mode_of_transport","mode_of_transport_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment","carrier_booking_reference",4,"character varying",35,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment","booking_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","booking","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment","carrier_id",3,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","carrier","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","iso_equipment_code","iso_equipment_code",1,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","requested_equipment","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","requested_equipment","booking_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","booking","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","requested_equipment","shipment_id",3,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","shipment","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","requested_equipment","requested_equipment_sizetype",4,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","iso_equipment_code","iso_equipment_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","requested_equipment","confirmed_equipment_sizetype",6,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","iso_equipment_code","iso_equipment_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_carrier_clauses","shipment_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","shipment","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_carrier_clauses","transport_document_id",3,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_document","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party_function","party_function_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_party","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","commercial_voyage","commercial_voyage_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","commodity","booking_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","booking","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","commodity","hs_code",3,"character varying",10,"FOREIGN KEY","dcsa_im_v3_0","hs_code","hs_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","commodity","cargo_gross_weight_unit",5,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","unit_of_measure","unit_of_measure_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","commodity","cargo_gross_volume_unit",7,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","unit_of_measure","unit_of_measure_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_cutoff_time","shipment_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","shipment","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_cutoff_time","cut_off_time_code",2,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","cut_off_time","cut_off_time_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","document_status",3,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","shipment_event_type","shipment_event_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","place_of_issue",11,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","location","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","transport_document_type_code",12,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","transport_document_type","transport_document_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","value_added_service_request","booking_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","booking","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","value_added_service_request","value_added_service_code",2,"character varying",5,"FOREIGN KEY","dcsa_im_v3_0","value_added_service","value_added_service_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document","place_of_issue",3,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","location","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document","carrier",8,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","carrier","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document","shipping_instruction_id",9,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","shipping_instruction","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document","issuingparty",11,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","party","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","amendment_to_transport_document",17,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_document","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","ebl_endorsement_chain","transport_document_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","ebl_endorsement_chain","title_holder",2,"character varying",100,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","ebl_endorsement_chain","transport_document_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_document","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","ebl_endorsement_chain","title_holder",2,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","party","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","ebl_endorsement_chain","endorsee",5,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","party","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","carrier_clauses","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_carrier_clauses","carrier_clause_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","carrier_clauses","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_item","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_party","party_id",2,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","party","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_party","shipping_instruction_id",3,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","shipping_instruction","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_party","shipment_id",4,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","shipment","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_party","party_function",5,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","party_function","party_function_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_party","booking_id",7,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","booking","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","displayed_address","document_party_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","document_party","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","charge","id",1,"character varying",100,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","charge","transport_document_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_document","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","charge","shipment_id",3,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","shipment","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","charge","payment_term_code",7,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","payment_term_type","payment_term_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_version","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_version","transport_document_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_document","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_version","document_status",3,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","shipment_event_type","shipment_event_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment","equipment_reference",1,"character varying",15,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment","iso_equipment_code",2,"character",4,"FOREIGN KEY","dcsa_im_v3_0","iso_equipment_code","iso_equipment_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment","weight_unit",4,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","unit_of_measure","unit_of_measure_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","requested_equipment_equipment","requested_equipment_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","requested_equipment","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","requested_equipment_equipment","equipment_reference",2,"character varying",15,"FOREIGN KEY","dcsa_im_v3_0","equipment","equipment_reference"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","package_code","package_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","utilized_transport_equipment","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","utilized_transport_equipment","equipment_reference",2,"character varying",15,"FOREIGN KEY","dcsa_im_v3_0","equipment","equipment_reference"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","utilized_transport_equipment","cargo_gross_weight_unit",4,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","unit_of_measure","unit_of_measure_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_item","consignment_item_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","consignment_item","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","active_reefer_settings","utilized_transport_equipment_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","active_reefer_settings","utilized_transport_equipment_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","utilized_transport_equipment","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","active_reefer_settings","temperature_unit",4,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","unit_of_measure","unit_of_measure_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","consignment_item","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","consignment_item","hs_code",3,"character varying",10,"FOREIGN KEY","dcsa_im_v3_0","hs_code","hs_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","consignment_item","shipping_instruction_id",4,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","shipping_instruction","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","consignment_item","weight_unit",7,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","unit_of_measure","unit_of_measure_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","consignment_item","volume_unit",8,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","unit_of_measure","unit_of_measure_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","consignment_item","shipment_id",9,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","shipment","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_item","weight_unit",5,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","unit_of_measure","unit_of_measure_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_item","volume_unit",6,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","unit_of_measure","unit_of_measure_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_item","package_code",8,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","package_code","package_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_item","utilized_transport_equipment_id",9,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","utilized_transport_equipment","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_line_item","cargo_item_id",2,"uuid",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_line_item","cargo_line_item_id",1,"text",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_line_item","cargo_item_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","cargo_item","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","reference","reference_type_code",1,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","reference_type","reference_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","reference","shipment_id",3,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","shipment","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","reference","shipping_instruction_id",4,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","shipping_instruction","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","reference","booking_id",5,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","booking","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","reference","consignment_item_id",6,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","consignment_item","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","seal_source","seal_source_code",1,"character varying",5,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","seal_type","seal_type_code",1,"character varying",5,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","seal","utilized_transport_equipment_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","utilized_transport_equipment","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","seal","seal_source_code",3,"character varying",5,"FOREIGN KEY","dcsa_im_v3_0","seal_source","seal_source_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","seal","seal_type_code",4,"character varying",5,"FOREIGN KEY","dcsa_im_v3_0","seal_type","seal_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_location_type","shipment_location_type_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_location","location_id",3,"character varying",100,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_location","shipment_location_type_code",4,"character varying",3,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_location","shipment_id",1,"uuid",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_location","shipment_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","shipment","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_location","booking_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","booking","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_location","location_id",3,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","location","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_location","shipment_location_type_code",4,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","shipment_location_type","shipment_location_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","port_call_status_code","port_call_status_code",1,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_call","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_call","facility_id",4,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","facility","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_call","facility_type_code",5,"character",4,"FOREIGN KEY","dcsa_im_v3_0","facility_type","facility_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_call","location_id",7,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","location","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_call","mode_of_transport_code",8,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","mode_of_transport","mode_of_transport_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_call","vessel_id",9,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","vessel","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_call","port_call_status_code",12,"character",4,"FOREIGN KEY","dcsa_im_v3_0","port_call_status_code","port_call_status_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport","load_transport_call_id",4,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_call","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport","discharge_transport_call_id",5,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_call","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_plan_stage_type","transport_plan_stage_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_transport","shipment_id",1,"uuid",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_transport","transport_id",2,"uuid",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_transport","transport_plan_stage_sequence_number",3,"integer",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_transport","shipment_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","shipment","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_transport","transport_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_transport","transport_plan_stage_code",4,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","transport_plan_stage_type","transport_plan_stage_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_transport","commercial_voyage_id",5,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","commercial_voyage","commercial_voyage_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_classifier","event_classifier_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment_event_type","equipment_event_type_code",1,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_type","document_type_code",1,"character varying",3,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_event_type","transport_event_type_code",1,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","empty_indicator","empty_indicator_code",1,"character varying",5,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event","event_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event","event_classifier_code",2,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","event_classifier","event_classifier_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment_event","equipment_event_type_code",5,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","equipment_event_type","equipment_event_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment_event","equipment_reference",6,"character varying",15,"FOREIGN KEY","dcsa_im_v3_0","equipment","equipment_reference"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment_event","empty_indicator_code",7,"character varying",5,"FOREIGN KEY","dcsa_im_v3_0","empty_indicator","empty_indicator_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment_event","transport_call_id",8,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_call","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment_event","event_location",9,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","location","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment_event","event_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_event","shipment_event_type_code",5,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","shipment_event_type","shipment_event_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_event","document_type_code",6,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","document_type","document_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_event","event_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","smdg_delay_reason","delay_reason_code",1,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_event","transport_event_type_code",5,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","transport_event_type","transport_event_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_event","delay_reason_code",6,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","smdg_delay_reason","delay_reason_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_event","transport_call_id",8,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_call","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_event","event_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_sharing_agreement_partner","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_sharing_agreement_partner","carrier_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","carrier","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_sharing_agreement_partner","vessel_sharing_agreement_id",3,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","vessel_sharing_agreement","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","service_proforma","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","service_proforma","service_id",7,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","service","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_call","import_voyage_id",10,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","voyage","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_call","export_voyage_id",11,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","voyage","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","commercial_voyage_transport_call","transport_call_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_call","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","commercial_voyage_transport_call","commercial_voyage_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","commercial_voyage","commercial_voyage_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event_type","operations_event_type_code",1,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","port_call_service_type","port_call_service_type_code",1,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","port_call_phase_type","port_call_phase_type_code",1,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","publisher",5,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","party","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","publisher_role",6,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","party_function","party_function_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","operations_event_type_code",7,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","operations_event_type","operations_event_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","event_location",8,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","location","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","transport_call_id",9,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_call","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","port_call_service_type_code",10,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","port_call_service_type","port_call_service_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","facility_type_code",11,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","facility_type","facility_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","delay_reason_code",12,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","smdg_delay_reason","delay_reason_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","vessel_position",13,"character varying",100,"FOREIGN KEY","dcsa_im_v3_0","location","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","port_call_phase_type_code",15,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","port_call_phase_type","port_call_phase_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","event_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","subscription_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_event_types","subscription_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_event_types","event_type",2,"text",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_event_types","subscription_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","event_subscription","subscription_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_transport_document_type","subscription_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_transport_document_type","transport_document_type_code",2,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_transport_document_type","subscription_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","event_subscription","subscription_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_transport_document_type","transport_document_type_code",2,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","transport_document_type","transport_document_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_shipment_event_type","subscription_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_shipment_event_type","shipment_event_type_code",2,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_shipment_event_type","subscription_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","event_subscription","subscription_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_shipment_event_type","shipment_event_type_code",2,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","shipment_event_type","shipment_event_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_transport_event_type","subscription_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_transport_event_type","transport_event_type_code",2,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_transport_event_type","subscription_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","event_subscription","subscription_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_transport_event_type","transport_event_type_code",2,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","transport_event_type","transport_event_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_equipment_event_type","subscription_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_equipment_event_type","equipment_event_type_code",2,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_equipment_event_type","subscription_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","event_subscription","subscription_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_equipment_event_type","equipment_event_type_code",2,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","equipment_event_type","equipment_event_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_operations_event_type","subscription_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_operations_event_type","operations_event_type_code",2,"character varying",4,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_operations_event_type","subscription_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","event_subscription","subscription_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription_operations_event_type","operations_event_type_code",2,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","operations_event_type","operations_event_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","unmapped_event_queue","event_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","pending_event_queue","delivery_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","pending_event_queue","subscription_id",2,"uuid",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","pending_event_queue","event_id",3,"uuid",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","pending_event_queue","subscription_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","event_subscription","subscription_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","notification_endpoint","endpoint_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","pending_email_notification","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","pending_email_notification","event_id",2,"uuid",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","pending_email_notification","template_name",3,"text",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","port_timezone","un_location_code",1,"character",5,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","port_timezone","un_location_code",1,"character",5,"FOREIGN KEY","dcsa_im_v3_0","un_location","un_location_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","negotiation_cycle","cycle_key",1,"text",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","negotiation_cycle","cycle_name",2,"text",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","timestamp_id",1,"text",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","timestamp_type_name",2,"text",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","event_classifier_code",3,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","event_classifier","event_classifier_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","operations_event_type_code",4,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","operations_event_type","operations_event_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","port_call_phase_type_code",5,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","port_call_phase_type","port_call_phase_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","port_call_service_type_code",6,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","port_call_service_type","port_call_service_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","facility_type_code",7,"character varying",4,"FOREIGN KEY","dcsa_im_v3_0","facility_type","facility_type_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","accept_timestamp_definition",15,"text",NULL,"FOREIGN KEY","dcsa_im_v3_0","timestamp_definition","timestamp_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","reject_timestamp_definition",16,"text",NULL,"FOREIGN KEY","dcsa_im_v3_0","timestamp_definition","timestamp_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","publisher_pattern","pattern_id",1,"text",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","publisher_pattern","publisher_role",2,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","party_function","party_function_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","publisher_pattern","primary_receiver",3,"character varying",3,"FOREIGN KEY","dcsa_im_v3_0","party_function","party_function_code"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition_publisher_pattern","timestamp_id",1,"text",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition_publisher_pattern","pattern_id",2,"text",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition_publisher_pattern","timestamp_id",1,"text",NULL,"FOREIGN KEY","dcsa_im_v3_0","timestamp_definition","timestamp_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition_publisher_pattern","pattern_id",2,"text",NULL,"FOREIGN KEY","dcsa_im_v3_0","publisher_pattern","pattern_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","payload","payload_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","ops_event_timestamp_definition","event_id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","ops_event_timestamp_definition","event_id",1,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","operations_event","event_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","ops_event_timestamp_definition","payload_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","payload","payload_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","ops_event_timestamp_definition","timestamp_definition",3,"text",NULL,"FOREIGN KEY","dcsa_im_v3_0","timestamp_definition","timestamp_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","ebl_solution_provider_type","ebl_solution_provider_code",2,"character varying",5,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment_event","utilized_transport_equipment_id",10,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","utilized_transport_equipment","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_schedule","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_schedule","vessel_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","vessel","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_schedule","service_id",3,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","service","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_schedule_terminal_visits","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_schedule_terminal_visits","vessel_schedule_id",2,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","vessel_schedule","id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_schedule_terminal_visits","actual_arrival_event_id",3,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_event","event_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_schedule_terminal_visits","planned_arrival_event_id",4,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_event","event_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_schedule_terminal_visits","estimated_arrival_event_id",5,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_event","event_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_schedule_terminal_visits","actual_departure_event_id",6,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_event","event_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_schedule_terminal_visits","planned_departure_event_id",7,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_event","event_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_schedule_terminal_visits","estimated_departure_event_id",8,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_event","event_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_schedule_terminal_visits","port_call_status_event_id",9,"uuid",NULL,"FOREIGN KEY","dcsa_im_v3_0","transport_event","event_id"
+"postgresql","dcsa_openapi","dcsa_im_v3_0","displayed_address","id",4,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_location","id",7,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_line_item","id",4,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_transport","id",7,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","seal","id",5,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","reference","id",7,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party_identifying_code","id",5,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","value_added_service_request","id",3,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","commodity","id",11,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","smdg_delay_reason","delay_reason_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","address","city",7,"character varying",65,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","pending_event_queue","payload",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","export_declaration_reference",13,"character varying",35,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","facility","facility_smdg_code",5,"character varying",6,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","address","name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_event_type","shipment_event_type_description",3,"character varying",350,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_event","event_classifier_code",2,"character varying",3,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","transport_document_reference",26,"character varying",20,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","valid_until",36,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_item","number_of_packages",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","number_of_copies",5,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","expected_departure_date",22,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","seal","seal_number",2,"character varying",15,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","receipt_delivery_type","receipt_delivery_type_description",3,"character varying",300,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","pending_event_queue","last_error_message",7,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","notification_endpoint","managed_endpoint",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","carrier_clauses","clause_content",2,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","service_proforma","service_proforma_agreed_date_time",2,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","is_ams_aci_filing_required",17,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","smdg_delay_reason","delay_reason_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","is_anchorage_location_needed",11,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","callback_url",2,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","active_reefer_settings","ventilation_max",8,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","address","country",9,"character varying",75,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment_event_type","equipment_event_type_name",2,"character varying",30,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment_event","event_created_date_time",3,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party_identifying_code","party_code",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","address","floor",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document_type","transport_document_type_description",3,"character varying",500,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","accumulated_retry_delay",17,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","displayed_name_for_place_of_delivery",16,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","is_shipped_onboard_type",4,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_type","description",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","consignment_item","weight",5,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","transport_document_type",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","displayed_name_for_port_of_discharge",15,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","receipt_delivery_type","receipt_delivery_type_name",2,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party_identifying_code","code_list_name",3,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","service_proforma","port_terminal_code",6,"character varying",11,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","requested_equipment","is_shipper_owned",8,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel","vessel_flag",4,"character",2,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","booking_channel_reference",27,"character varying",20,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","location","location_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment","confirmation_datetime",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","unmapped_event_queue","enqueued_at_date_time",2,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_event","document_reference",9,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_plan_stage_type","transport_plan_stage_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","is_pbp_location_needed",10,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","booking_request_datetime",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_schedule","created_date_time",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","carrier","carrier_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","port_call_service_type","port_call_service_type_name",2,"character varying",30,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","service","carrier_service_name",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","service","carrier_service_code",3,"character varying",5,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_schedule_terminal_visits","created_date_time",11,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","miles_remaining_to_destination",17,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","address","street",3,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","event_created_date_time",3,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","seal_type","seal_type_description",2,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","ebl_solution_provider_type","ebl_solution_provider_name",1,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","carrier_service_code",11,"character varying",5,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_movement_type","cargo_movement_type_description",3,"character varying",300,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_event","change_remark",7,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_type","document_type_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","address","postal_code",6,"character varying",10,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","charge","calculation_basis",8,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party_function","party_function_description",3,"character varying",350,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_schedule_terminal_visits","transport_call_sequence",10,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","reference_type","reference_type_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document","shipped_onboard_date",5,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","communication_channel_qualifier","communication_channel_qualifier_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","charge","quantity",10,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","incoterms","incoterms_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","reference_type","reference_type_description",3,"character varying",400,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","active_reefer_settings","humidity_min",5,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document","issue_date",4,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","consignment_item","description_of_goods",2,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","displayed_name_for_place_of_receipt",13,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event_type","operations_event_type_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event","event_created_date_time",3,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","charge","unit_price",9,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","is_import_license_required",14,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","commodity","cargo_gross_weight",4,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","payment_term_type","payment_term_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","port_call_phase_type","port_call_phase_type_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","utilized_transport_equipment","is_shipper_owned",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","unit_of_measure","unit_of_measure_description",2,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","pending_event_queue","enqueued_at_date_time",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","vessel_draft",16,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","voyage","carrier_voyage_number",2,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","carrier","smdg_code",3,"character varying",3,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","secret",9,"bytea",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","consignment_item","volume",6,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","displayed_address","address_line_text",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","port_call_phase_type","port_call_phase_type_name",2,"character varying",30,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","payload","created_at",3,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","is_electronic",7,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","voyage","universal_voyage_reference",3,"character varying",5,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","facility","facility_bic_code",4,"character varying",4,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","un_location","location_code",3,"character",3,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_call","transport_call_reference",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel","vessel_name",3,"character varying",35,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment","valid_until",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_event","event_date_time",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_sharing_agreement","vessel_sharing_agreement_name",2,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","is_to_order",8,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","commodity","cargo_gross_volume",6,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","transport_document_id",4,"character varying",20,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","seal_source","seal_source_description",2,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","code_list_responsible_agency","code_list_responsible_agency_code",2,"character varying",3,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","iso_equipment_code","iso_equipment_name",2,"character varying",35,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","country","country_name",2,"character varying",75,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","notification_endpoint","subscription_id",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party","party_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","commercial_voyage","commercial_voyage_name",2,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_sharing_agreement_type","vessel_sharing_agreement_type_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","hs_code","hs_code_description",2,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","facility","facility_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","created_date_time",19,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","reference","reference_value",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document","updated_date_time",14,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","is_destination_filing_required",18,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","commodity","commodity_type",2,"character varying",550,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_plan_stage_type","transport_plan_stage_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","charge","currency_amount",5,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","code_list_responsible_agency","code_list_responsible_agency_name",3,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","transport_document_reference",10,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_event_type","transport_event_type_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","communication_channel_qualifier","communication_channel_qualifier_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document","created_date_time",13,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","ebl_solution_provider_type","ebl_solution_provider_description",4,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","updated_date_time",20,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","port_timezone","iana_timezone",2,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_event","event_created_date_time",3,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","active_reefer_settings","ventilation_min",7,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","active_reefer_settings","temperature_max",3,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","port_call_status_code","port_call_status_name",2,"character varying",30,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_movement_type","cargo_movement_type_name",2,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","mode_of_transport","mode_of_transport_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment","terms_and_conditions",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","value_added_service","value_added_service_description",3,"character varying",200,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","carrier_voyage_number",12,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","ebl_endorsement_chain","signature",3,"character varying",500,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","incoterms","incoterms_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document","number_of_rider_pages",10,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","active_reefer_settings","humidity_max",6,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","transport_call_reference",7,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","port_call_service_type","port_call_service_type_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","is_berth_location_needed",9,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel","width",9,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cut_off_time","cut_off_time_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","un_location","un_location_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","carrier_booking_reference",3,"character varying",35,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_item","weight",3,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","pending_event_queue","last_attempt_date_time",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","requested_equipment","requested_equipment_units",5,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_version","last_modified_datetime",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","provided_in_standard",14,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_event","document_id",7,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_cutoff_time","cut_off_time",3,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party","tax_reference_2",4,"character varying",20,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport","transport_name",3,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party_function","party_function_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","address","state_region",8,"character varying",65,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","remark",14,"character varying",500,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","pending_event_queue","retry_count",8,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_location_type","shipment_location_type_name",2,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_transport","is_under_shippers_responsibility",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party","tax_reference_1",3,"character varying",20,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","vessel_imo_number",13,"character varying",7,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","event_date_time",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_line_item","shipping_marks",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","is_vessel_position_needed",13,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","declared_value_currency",32,"character varying",3,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","ebl_solution_provider_type","ebl_solution_provider_url",3,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","expected_arrival_at_place_of_delivery_end_date",24,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","package_code","package_code_description",2,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party_contact_details","name",3,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document_type","transport_document_type_name",2,"character varying",20,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_classifier","event_classifier_name",2,"character varying",30,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","utilized_transport_equipment","cargo_gross_weight",3,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","code_list_responsible_agency","code_list_responsible_agency_description",4,"character varying",300,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","port_call_phase",8,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","updated_date_time",37,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","active_reefer_settings","temperature_min",2,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","facility_type","facility_type_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party","public_key",5,"character varying",500,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","value_added_service","value_added_service_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","ebl_endorsement_chain","endorsement_datetime",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","equipment_reference",6,"character varying",15,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport","transport_reference",2,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","carrier_booking_request_reference",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","commodity","number_of_packages",8,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_classifier","event_classifier_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","payment_term_type","payment_term_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_event_type","transport_event_type_name",2,"character varying",30,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","declared_value",33,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","requested_equipment","confirmed_equipment_units",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","tradelane","tradelane_name",2,"character varying",150,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_party","is_to_be_notified",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","is_equipment_substitution_allowed",29,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","service_proforma","port_terminal_call_sequence_number",5,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document","received_for_shipment_date",6,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment_event_type","equipment_event_type_description",3,"character varying",300,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment_event","event_date_time",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","port_call_status_code","port_call_status_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel","is_dummy",7,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","notification_endpoint","secret",3,"bytea",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_location","event_date_time",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","pending_email_notification","enqueued_at_date_time",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_event","event_classifier_code",2,"character varying",3,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","signature_method",8,"character varying",20,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document","transport_document_reference",2,"character varying",20,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel_sharing_agreement_type","vessel_sharing_agreement_type_name",2,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","service_contract_reference",9,"character varying",30,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","notification_endpoint","endpoint_reference",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","address","street_number",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","last_bundle_size",16,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment","updated_date_time",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_item","package_name_on_bl",10,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","retry_count",15,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_event","event_created_date_time",3,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","are_charges_displayed_on_copies",10,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","location","latitude",3,"character varying",10,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel","length",8,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document","number_of_originals",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_type","document_type_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","export_voyage_number",31,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","displayed_name_for_port_of_load",14,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_document","valid_until",12,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cut_off_time","cut_off_time_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party_contact_details","url",6,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","import_license_reference",15,"character varying",35,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_call","other_facility",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party_contact_details","phone",5,"character varying",30,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_version","binary_copy",4,"bytea",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","number_of_originals",6,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_event","event_date_time",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","shipping_instruction_reference",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","vessel","vessel_call_sign",5,"character varying",10,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","notification_endpoint","subscription_url",6,"character varying",500,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","carrier","nmfta_code",4,"character varying",4,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","is_partial_load_allowed",11,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","valid_until",18,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment_event","event_classifier_code",2,"character varying",3,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","charge","currency_code",6,"character varying",3,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","party_contact_details","email",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event","event_date_time",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","transport_call","transport_call_sequence_number",3,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_location_type","shipment_location_type_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_location","displayed_name",5,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","charge","charge_type",4,"character varying",20,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_event","reason",8,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","iso_equipment_code","iso_equipment_size_code",3,"character varying",2,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipping_instruction","are_charges_displayed_on_originals",9,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","service_proforma","port_call_sequence_number",3,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","commodity","export_license_issue_date",9,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event_type","operations_event_type_name",2,"character varying",30,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","service","universal_service_reference",6,"character varying",8,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","service_proforma","port_code",4,"character varying",5,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","shipment_event_type","shipment_event_type_name",2,"character varying",30,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","displayed_address","address_line_number",2,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","event_subscription","retry_after",14,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","contract_quotation_reference",19,"character varying",35,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","timestamp_definition","is_terminal_needed",12,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","equipment","tare_weight",3,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","payload","payload",2,"bytea",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","cargo_item","volume",4,"real",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","operations_event","event_classifier_code",2,"character varying",3,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","iso_equipment_code","iso_equipment_type_code_a",4,"character varying",2,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","location","longitude",4,"character varying",11,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","commodity","export_license_expiry_date",10,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","submission_datetime",16,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","is_export_declaration_required",12,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","document_version","document_hash",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","mode_of_transport","mode_of_transport_description",3,"character varying",250,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","facility_type","facility_type_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","dcsa_openapi","dcsa_im_v3_0","booking","expected_arrival_at_place_of_delivery_start_date",23,"date",NULL,NULL,NULL,NULL,NULL
